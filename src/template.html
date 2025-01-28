@@ -4,60 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <header class="header"><h1>What-To-Do</h1></header>
-    <div class="sidebar-container">
-       <ul class="nav">
-        <span>Home</span>
-        <li class="nav-item">All Tasks</li>
-        <li class="nav-item">Today</li>
-        <li class="nav-item">Week</li>
-        <span>Projects</span>
-        <ul class="projects">
-            <li class="projects-item">
-                <span class="project-name">Gym</span>
-            </li>
-        </ul>
-       </ul>
-    </div>
-    <div class="main-container">
-        <div class="task-container">
-            <form id="task-form">
-                <div class="form-input">
-                    <label for="form-title">Title</label>
-                    <input type="text" name="form-title" id="form-title" placeholder="What to do?">
-                </div>
-                <div class="form-input">
-                    <label for="form-details">Details (optional)</label>
-                    <textarea type="text" name="form-details" id="form-details" placeholder="e.g work, payment"></textarea>
-                </div>
-                <div class="form-input">
-                    <label for="form-date">Date</label>
-                    <input type="date" name="form-date" id="form-date">
-                </div>
-                <div class="form-buttons">
-                    <input type="submit" class="submit-btn" value="Add">
-                    <input type="button" class="cancel-btn" value="Cancel">
-                </div>
-            </form>
+    <header><h1>What-To-Do</h1></header>
+    <div id="content">
+        <div class="sidebar-container">
+            <ul class="nav">
+                <span>Home</span>
+                <li class="nav-item">All Tasks</li>
+                <li class="nav-item">Today</li>
+                <li class="nav-item">Week</li>
+                <span>Projects</span>
+                <ul class="projects">
+                    <li class="projects-item">
+                        <span class="project-name">Gym</span>
+                    </li>
+                </ul>
+            </ul>
+            <button>+</button>
         </div>
-        <div class="project-container">
-            <form id="project-form">
-                <div>
-                    <label for="project-title">Title</label>
-                    <input type="text" name="project-title" id="project-title" placeholder="Enter Project Name">
-                </div>
-                <div class="form-buttons">
-                    <input type="submit" class="submit-btn" value="Add">
-                    <input type="button" class="cancel-btn" value="Cancel">
-                </div>
-            </form>
+        <div class="main-container">
+            <div class="task-container">
+                <form id="task-form">
+                    <p><strong>Tasks</strong></p>
+                    <div class="form-input">
+                        <label for="form-title">Title</label>
+                        <input type="text" name="form-title" id="form-title" placeholder="What to do?">
+                    </div>
+                    <div class="form-input">
+                        <label for="form-details">Details (optional)</label>
+                        <textarea type="text" name="form-details" id="form-details" placeholder="e.g work, payment"></textarea>
+                    </div>
+                    <div class="form-input">
+                        <label for="form-date">Date</label>
+                        <input type="date" name="form-date" id="form-date">
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="submit-btn" value="Add">
+                        <input type="button" class="cancel-btn" value="Cancel">
+                    </div>
+                </form>
+            </div>
+            <div class="project-container">
+                <form id="project-form">
+                    <p><strong>Projects</strong></p>
+                    <div>
+                        <label for="project-title">Title</label>
+                        <input type="text" name="project-title" id="project-title" placeholder="Enter Project Name">
+                    </div>
+                    <div class="form-buttons">
+                        <input type="submit" class="submit-btn" value="Add">
+                        <input type="button" class="cancel-btn" value="Cancel">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
-
     <footer class="footer"><p>Designed by Emre Ipekci</p></footer>
 </body>
 </html>

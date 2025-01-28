@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 8fr auto;
+
+}
+
+header {
+    grid-row: 1;
+
+}
+
+#content {
+    grid-row: 2;
+    font-family: "Montserrat", sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+}
+
+.sidebar-container {
+    grid-column: 1;
+    background-color: rgb(136, 136, 188);
+    padding: 3em;
+}
+
+.main-container {
+    grid-column: 2;
+    background-color: rgb(163, 135, 189);
+    padding: 3em;
+}
+
