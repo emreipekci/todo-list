@@ -15,7 +15,7 @@ header {
 
 }
 
-#content {
+main {
     grid-row: 2;
     font-family: "Montserrat", sans-serif;
     display: grid;
@@ -23,13 +23,13 @@ header {
 
 }
 
-.sidebar-container {
+.sidebar {
     grid-column: 1;
     background-color: rgb(136, 136, 188);
     padding: 3em;
 }
 
-.main-container {
+.project-preview {
     grid-column: 2;
     background-color: rgb(163, 135, 189);
     padding: 3em;
