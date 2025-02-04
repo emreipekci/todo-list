@@ -13,6 +13,9 @@ function createTask(title, details, date, priority, project, checked=false) {
     };
 }
 
+const taskForm = document.getElementById("task-form");
+taskForm.style.display = "none"; // Initially hide the form
+
 // Function to Add New Task
 function addNewTask(e, toDoList) {
     
@@ -35,6 +38,14 @@ function addNewTask(e, toDoList) {
     displayTasks(toDoList);
 }
 
+// Function to show task form when adding a task to a project
+function showTaskForm(projectName) {
+    const taskForm = document.getElementById("task-form");
+    if (taskForm) {
+        taskForm.classList.remove("hidden"); }
 
+    // If project name is given, set it in the form
+    document.getElementById("task-project").value = projectName || "";
+}
 
-export { addNewTask };
+export { addNewTask, showTaskForm };

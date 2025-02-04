@@ -1,3 +1,5 @@
+import { showTaskForm } from "./task.js";
+
 //function to display tasks
 function displayTasks(toDoList) {
     const taskDisplay = document.getElementById("task-display");
@@ -21,16 +23,35 @@ function displayProjects(projectList) {
     const projectDisplay = document.getElementById("project-display");
     projectDisplay.innerHTML = ""; // Clear previous projects
 
-    projectList.forEach(project => {
+    projectList.forEach((project, index) => {
         const projectElement = document.createElement("div");
-        projectElement.classList.add("project");
-        projectElement.innerHTML = `
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-            <input type="checkbox" ${project.checked ? "checked" : ""}>
-        `;
+        projectElement.textContent = project.title; //Show only title
+        projectElement.classList.add("project-title");
+
+        // Click event to show details
+        projectElement.addEventListener("click", () => showProjectPreview(project, index, projectList));
+        
         projectDisplay.appendChild(projectElement);
     });
 }
 
-export { displayTasks, displayProjects };
+// Show project details
+function showProjectPreview(project, index, projectList) {
+    const previewContainer = document.querySelector(".content-preview");
+    previewContainer.innerHTML = ""; // Clear previous details
+
+    const titleElement = document.createElement("h3");
+    titleElement.textContent = project.title;
+
+    const addTaskButton = document.createElement("button");
+    addTaskButton.textContent = "Add Task";
+    addTaskButton.addEventListener("click", () => showTaskForm(project.title));
+
+    // Append elements to the details section
+    previewContainer.appendChild(titleElement);
+    previewContainer.appendChild(addTaskButton);
+}
+
+
+
+export { displayTasks, displayProjects, showProjectPreview };

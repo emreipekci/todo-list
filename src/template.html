@@ -11,23 +11,31 @@
     </header>
     <main class="main">
         <div class="sidebar">
-            <div class="tasks-list">
+            <div class="task-list">
                 <h2 class="home-title">Home</h2>
                 <button class="home-buttons" id="button-alltasks">All Tasks</button>
                 <button class="home-buttons" id="button-today">Today</button>
                 <button class="home-buttons" id="button-week">Week</button>
             </div>
-            
-            <h2 class="project-title">Projects</h2>
-            <form id="project-form">
-                <input type="text" id="project-title" placeholder="Project Title" required>
-                <input type="text" id="project-description" placeholder="Project Description">
+            <div class="project-list">
+                <h2 class="project-title">Projects</h2>
+                <form id="project-form">
+                    <div class="project-form-input">
+                        <input type="text" id="project-title" placeholder="Project Title" required></div>
+                    <div class="project-form-buttons">                    
+                        <button id="add-button" type="submit">Add</button>
+                        <button id="cancel-button">Cancel</button>
+                    </div>
+                </form>
+                <div id="project-display">
+                    <div id="project-preview"></div>
+                </div>  <!-- Container for projects --> 
                 <button class="add-project-button" type="submit">Add Project</button>
-            </form>
-            <div id="project-display"></div>  <!-- Container for projects --> 
+            </div>
         </div>
         
-        <div class="project-preview"> 
+        <div 
+       id="content-preview" class="content-preview"> 
             <form id="task-form">
                 <input type="text" id="task-title" placeholder="Task Title" required>
                 <input type="text" id="task-details" placeholder="Details">
@@ -38,7 +46,7 @@
                     <option value="High">High</option>
                 </select>
                 <input type="text" id="task-project" placeholder="Project Name">
-                <button type="submit">Add Task</button>
+                <button type="submit">Add</button>
             </form>
         </div>
         <div id="task-display"></div> <!-- Container for tasks -->

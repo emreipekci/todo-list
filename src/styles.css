@@ -1,3 +1,8 @@
+:root {
+    --background-color: rgb(241, 242, 253);
+    --font-size: 14px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +11,7 @@
 body {
     height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 8fr auto;
+    grid-template-rows: 1fr 8fr min-content;
 
 }
 
@@ -20,18 +25,71 @@ main {
     font-family: "Montserrat", sans-serif;
     display: grid;
     grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
 
 }
 
 .sidebar {
     grid-column: 1;
-    background-color: rgb(136, 136, 188);
+    background-color: var(--background-color);
     padding: 3em;
 }
 
-.project-preview {
+footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.task-list,
+.project-list {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    margin: 15px;
+}
+
+button {
+    margin: 15px;
+    background-color: #a0ac8c;
+    color: white;
+    font-weight: 600;
+    border: none;
+    min-width: 100px;
+    padding: 10px 20px;
+    border-radius: 4px;  
+    font-size: var(--font-size);
+}
+
+.content-preview {
     grid-column: 2;
     background-color: rgb(163, 135, 189);
-    padding: 3em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#project-form { 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    font-size: var(--font-size);
+    gap: 1em; 
+}
+
+#project-form input {
+    padding: 1em 2em;
+}
+
+.project-form-buttons {
+    display: flex;
+    gap: 0.5em; 
+}
+
+#project-display {
+    padding-left: 1em;
 }
 
