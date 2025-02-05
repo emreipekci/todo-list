@@ -18,10 +18,11 @@
                 <button class="home-buttons" id="button-week">Week</button>
             </div>
             <div class="project-list">
-                <h2 class="project-title">Projects</h2>
+                <h2>Projects</h2>
                 <form id="project-form">
                     <div class="project-form-input">
-                        <input type="text" id="project-title" placeholder="Project Title" required></div>
+                        <input type="text" id="project-title" placeholder="Project Title" required>
+                    </div>
                     <div class="project-form-buttons">                    
                         <button id="add-button" type="submit">Add</button>
                         <button id="cancel-button">Cancel</button>
@@ -34,13 +35,12 @@
             </div>
         </div>
         
-        <div 
-       id="content-preview" class="content-preview"> 
+        <div id="content-preview" class="content-preview"> 
             <form id="task-form">
-                <input type="text" id="task-title" placeholder="Task Title" required>
-                <input type="text" id="task-details" placeholder="Details">
-                <input type="date" id="task-date">
-                <select id="task-priority">
+            <input type="text" class="task-form-inputs" id="task-title" placeholder="Task Title" required>
+                <input type="text" class="task-form-inputs" id="task-details" placeholder="Details">
+                <input type="date" class="task-form-other-inputs" id="task-date">
+                <select class="task-form-other-inputs" id="task-priority">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>

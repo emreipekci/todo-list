@@ -1,6 +1,7 @@
 :root {
     --background-color: rgb(241, 242, 253);
     --font-size: 14px;
+    --main-color: rgb(143, 131, 137);
 }
 
 * {
@@ -53,7 +54,7 @@ h2 {
 
 button {
     margin: 15px;
-    background-color: #a0ac8c;
+    background-color: var(--main-color);
     color: white;
     font-weight: 600;
     border: none;
@@ -89,7 +90,29 @@ button {
     gap: 0.5em; 
 }
 
-#project-display {
-    padding-left: 1em;
+.project-title {
+    background-color: var(--main-color);
+    padding: 10px 20px;
+    margin: 15px;
+    color: white;
 }
 
+/*Task form*/
+
+#content-preview {
+    padding: 3em;  
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    gap: 1em;
+}
+
+.task-form-inputs {
+    padding: 1em 0.5em 1em 0.5em;
+}
+.task-form-other-inputs {
+    padding: 0.5em ;
+}

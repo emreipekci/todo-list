@@ -1,11 +1,10 @@
-import { displayProjects, showProjectPreview, editProject } from "./dom.js";
+import { displayProjects, showProjectPreview } from "./dom.js";
 
 //PROJECTS
 //Project factory function
-function createProject(title, description, checked=false) {
+function createProject(title, checked=false) {
     return {
         title,
-        description,
         checked
     };
 }
@@ -31,9 +30,13 @@ function addNewProject(e, projectList) {
 
     // Get project title from form
     const title = document.getElementById("project-title").value.trim();
+   if (!title) return; //Prevent empty projects
 
-    const newProject = { title };   
-    projectList.push(newProject);   
+    const newProject = createProject(title);  
+    projectList.push(newProject); 
+    
+    console.log("New project added:", newProject);
+    console.log("Updated project list:", projectList);
     displayProjects(projectList);  // Update the project display
 
     projectForm.reset();

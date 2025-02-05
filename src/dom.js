@@ -1,5 +1,8 @@
 import { showTaskForm } from "./task.js";
 
+const toDoList = [];
+const projectList = [];
+
 //function to display tasks
 function displayTasks(toDoList) {
     const taskDisplay = document.getElementById("task-display");
@@ -19,7 +22,7 @@ function displayTasks(toDoList) {
 }
 
 // Function to Display Projects
-function displayProjects(projectList) {
+function displayProjects(projectList, toDoList) {
     const projectDisplay = document.getElementById("project-display");
     projectDisplay.innerHTML = ""; // Clear previous projects
 
@@ -29,27 +32,37 @@ function displayProjects(projectList) {
         projectElement.classList.add("project-title");
 
         // Click event to show details
-        projectElement.addEventListener("click", () => showProjectPreview(project, index, projectList));
+        projectElement.addEventListener("click", () => {
+            console.log("Clicked project:", project.title);
+            showProjectPreview(project, index, projectList, toDoList);
+        });
         
         projectDisplay.appendChild(projectElement);
     });
 }
 
 // Show project details
-function showProjectPreview(project, index, projectList) {
-    const previewContainer = document.querySelector(".content-preview");
-    previewContainer.innerHTML = ""; // Clear previous details
+function showProjectPreview(project, index, projectList, toDoList) {
+    console.log("Showing preview for:", project.title);
+    
+    const previewContainer = document.getElementById("content-preview");
 
     const titleElement = document.createElement("h3");
     titleElement.textContent = project.title;
 
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add Task";
-    addTaskButton.addEventListener("click", () => showTaskForm(project.title));
+    addTaskButton.classList.add("add-task-button");
+
+    // Filter tasks by selected project
+    const filteredTasks = toDoList.filter(task => task.project === project.title);
+    displayTasks(filteredTasks);
 
     // Append elements to the details section
     previewContainer.appendChild(titleElement);
     previewContainer.appendChild(addTaskButton);
+
+    console.log("Added Add Task Button:", addTaskButton); 
 }
 
 

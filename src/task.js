@@ -14,7 +14,9 @@ function createTask(title, details, date, priority, project, checked=false) {
 }
 
 const taskForm = document.getElementById("task-form");
-taskForm.style.display = "none"; // Initially hide the form
+const taskProjectInput = document.getElementById("task-project");
+taskForm.classList.add('hidden')
+
 
 // Function to Add New Task
 function addNewTask(e, toDoList) {
@@ -38,14 +40,24 @@ function addNewTask(e, toDoList) {
     displayTasks(toDoList);
 }
 
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("add-task-button")) {
+            console.log("Add Task Button Clicked!");
+            taskForm.classList.remove("hidden"); 
+        }
+    });
+
+
+
 // Function to show task form when adding a task to a project
 function showTaskForm(projectName) {
-    const taskForm = document.getElementById("task-form");
-    if (taskForm) {
-        taskForm.classList.remove("hidden"); }
-
-    // If project name is given, set it in the form
-    document.getElementById("task-project").value = projectName || "";
+    taskForm.classList.remove("hidden");  // Show the task form
+    taskProjectInput.value = projectName || ""; // Pre-fill the project name in the form
+    console.log("Task form shown for project:", projectName);
 }
+
+
+
+
 
 export { addNewTask, showTaskForm };
