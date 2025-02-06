@@ -1,4 +1,4 @@
-import { displayTasks, showProjectPreview } from "./dom.js";
+import { displayTasks } from "./dom.js";
 
 //TASKS 
 //Task factory function
@@ -24,22 +24,27 @@ function addNewTask(e, toDoList) {
     e.preventDefault(); // stop page from refreshing after each submit
 
     // Get values from form inputs
-    const title = document.getElementById("task-title").value;
-    const details = document.getElementById("task-details").value;
+    const title = document.getElementById("task-title").value.trim();
+    const details = document.getElementById("task-details").value.trim();
     const date = document.getElementById("task-date").value;
     const priority = document.getElementById("task-priority").value;
    
-       // Retrieve project name from the dataset
-       const project = taskForm.dataset.projectName || "No Project";
+    // Retrieve project name from the dataset
+    const project = taskForm.dataset.projectName;  
+
+    if (!title || !project) return; // Prevent adding a task without a title or project
 
     //Create a new task
-    const newTask = createTask(title, details, date, priority);
+    const newTask = { title, details, date, priority, project, checked: false };
 
     // Add the task to the toDoList array
     toDoList.push(newTask);
 
-    // Update the display
-    displayTasks(toDoList);
+    console.log(`Task added to project: ${project}`, newTask);
+
+    // ✅ Display tasks for the selected project
+    const filteredTasks = toDoList.filter(task => task.project === project);
+    displayTasks(filteredTasks);
 }
 
     document.addEventListener("click", (e) => {

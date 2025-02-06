@@ -65,6 +65,7 @@ function showProjectPreview(project, index, projectList, toDoList) {
 
     // Filter tasks by selected project
     const filteredTasks = toDoList.filter(task => task.project === project.title);
+    console.log(`Tasks for ${project.title}:`, filteredTasks);
     displayTasks(filteredTasks);
 
     // Append elements to the details section
