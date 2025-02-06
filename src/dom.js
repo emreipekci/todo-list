@@ -3,10 +3,10 @@ import { showTaskForm } from "./task.js";
 const toDoList = [];
 const projectList = [];
 
-//function to display tasks
+// DISPLAY TASKS
 function displayTasks(toDoList) {
     const taskDisplay = document.getElementById("task-display");
-    taskDisplay.innerHTML = ""; //clear existing tasks
+    
 
     toDoList.forEach(task => {
         const taskElement = document.createElement("div");
@@ -21,7 +21,7 @@ function displayTasks(toDoList) {
     });
 }
 
-// Function to Display Projects
+// DISPLAY PROJECTS
 function displayProjects(projectList, toDoList) {
     const projectDisplay = document.getElementById("project-display");
     projectDisplay.innerHTML = ""; // Clear previous projects
@@ -41,18 +41,27 @@ function displayProjects(projectList, toDoList) {
     });
 }
 
-// Show project details
+// SHOW PROJECT PREVIEW
 function showProjectPreview(project, index, projectList, toDoList) {
     console.log("Showing preview for:", project.title);
     
     const previewContainer = document.getElementById("content-preview");
+    const taskDisplay = document.getElementById("task-display");
+    
+    // Remove only project-related elements (keep task form if it's already there)
+    const projectElements = previewContainer.querySelectorAll(".title-element, .add-task-button");
+    projectElements.forEach(el => el.remove());
+
+    taskDisplay.innerHTML = "";
 
     const titleElement = document.createElement("h3");
     titleElement.textContent = project.title;
+    titleElement.classList.add("title-element");
 
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add Task";
     addTaskButton.classList.add("add-task-button");
+
 
     // Filter tasks by selected project
     const filteredTasks = toDoList.filter(task => task.project === project.title);
@@ -63,6 +72,11 @@ function showProjectPreview(project, index, projectList, toDoList) {
     previewContainer.appendChild(addTaskButton);
 
     console.log("Added Add Task Button:", addTaskButton); 
+
+    // Event listener for add task button
+    addTaskButton.addEventListener("click", () => {
+        showTaskForm(project.title);
+    });
 }
 
 

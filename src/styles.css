@@ -73,6 +73,12 @@ button {
     display: none !important;
 }
 
+.disabled {
+    pointer-events: none; /* Prevents clicks */
+    opacity: 0.8; /* Optional: make it visually clear that it's disabled */
+}
+
+
 #project-form { 
     display: flex;
     flex-direction: column;

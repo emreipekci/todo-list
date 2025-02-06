@@ -1,4 +1,4 @@
-import { displayProjects, showProjectPreview } from "./dom.js";
+import { displayProjects } from "./dom.js";
 
 //PROJECTS
 //Project factory function
@@ -24,20 +24,21 @@ addProjectButton.addEventListener("click", () => {
     
 });
 
-// Function to Add New Project
-function addNewProject(e, projectList) {
+// ADD NEW PROJECT
+function addNewProject(e, projectList, toDoList) {
     e.preventDefault(); // Prevent form submission refresh
 
     // Get project title from form
-    const title = document.getElementById("project-title").value.trim();
-   if (!title) return; //Prevent empty projects
+    const title = document.getElementById("project-title").value;
+    if (!title.trim()) return; // Prevent empty projects
 
-    const newProject = createProject(title);  
-    projectList.push(newProject); 
+    const newProject = { title };
+    projectList.push(newProject);
     
     console.log("New project added:", newProject);
     console.log("Updated project list:", projectList);
-    displayProjects(projectList);  // Update the project display
+    displayProjects(projectList, toDoList);  // Update the project display
+
 
     projectForm.reset();
     projectForm.classList.add("hidden"); // Hide form after adding project

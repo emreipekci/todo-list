@@ -37,7 +37,7 @@
         
         <div id="content-preview" class="content-preview"> 
             <form id="task-form">
-            <input type="text" class="task-form-inputs" id="task-title" placeholder="Task Title" required>
+                <input type="text" class="task-form-inputs" id="task-title" placeholder="Task Title" required>
                 <input type="text" class="task-form-inputs" id="task-details" placeholder="Details">
                 <input type="date" class="task-form-other-inputs" id="task-date">
                 <select class="task-form-other-inputs" id="task-priority">
@@ -45,11 +45,13 @@
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
-                <input type="text" id="task-project" placeholder="Project Name">
+                <input type="text" class="task-form-other-inputs" id="task-project" placeholder = "Project">         
                 <button type="submit">Add</button>
+                <button id="task-cancel-button">Cancel</button>
             </form>
+            <div id="task-display"></div> <!-- Container for tasks -->
         </div>
-        <div id="task-display"></div> <!-- Container for tasks -->
+        
     </main>
     <footer class="footer">
         Built by
