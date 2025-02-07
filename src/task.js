@@ -1,7 +1,8 @@
-import { displayTasks } from "./dom.js";
+import { displayTasks, filterTasks } from "./dom.js";
+
 
 //TASKS 
-//Task factory function
+//✅Task factory function
 function createTask(title, details, date, priority, project, checked=false) {
     return {
         title,
@@ -18,7 +19,7 @@ const taskForm = document.getElementById("task-form");
 taskForm.classList.add('hidden')
 
 
-// ADD NEW TASK
+//✅ ADD NEW TASK
 function addNewTask(e, toDoList) {
     
     e.preventDefault(); // stop page from refreshing after each submit
@@ -40,11 +41,10 @@ function addNewTask(e, toDoList) {
     // Add the task to the toDoList array
     toDoList.push(newTask);
 
-    console.log(`Task added to project: ${project}`, newTask);
+    console.log("New Task Added:", newTask);
+    console.log("Updated To-Do List:", toDoList);  // 🔍 Check if the task is added
 
-    // ✅ Display tasks for the selected project
-    const filteredTasks = toDoList.filter(task => task.project === project);
-    displayTasks(filteredTasks);
+    displayTasks(toDoList.filter(task => task.project === project));
 }
 
     document.addEventListener("click", (e) => {
@@ -53,23 +53,29 @@ function addNewTask(e, toDoList) {
             taskForm.classList.remove("hidden");
 
             document.querySelector(".add-task-button").style.display = "none";
-            document.querySelector(".title-element").style.display = "none";
             
         }
     }); 
 
-// Function to show task form when adding a task to a project
+//✅ SHOW TASK FORM when adding a task to a project
 function showTaskForm(projectName) {
     const taskForm = document.getElementById("task-form");
     taskForm.classList.remove("hidden"); // Show the task form
 
+    // Store project name somewhere accessible (e.g., hidden input or dataset)
+    taskForm.dataset.projectName = projectName;
 
-        // Store project name somewhere accessible (e.g., hidden input or dataset)
-        taskForm.dataset.projectName = projectName;
+    const previewContainer = document.getElementById("content-preview");
+    const titleElement = previewContainer.querySelector(".title-element");
+    if (titleElement) {
+        titleElement.insertAdjacentElement("afterend", taskForm); // Ensure form appears AFTER title
+    } else {
+        previewContainer.prepend(taskForm); // If no title (unlikely), just add the form at the top
+    }
 
-// ✅ Disable clicks on projects and tasks
-document.querySelector(".project-list").classList.add("disabled");
-document.getElementById("task-display").classList.add("disabled");
+    // Disable clicks on projects and tasks
+    document.querySelector(".project-list").classList.add("disabled");
+    document.getElementById("task-display").classList.add("disabled");
      
 
     console.log("Task form shown for project:", projectName);
@@ -80,10 +86,9 @@ const taskCancelButton = document.getElementById("task-cancel-button");
 taskCancelButton.addEventListener("click", () => {
     taskForm.reset();
     taskForm.classList.add("hidden"); 
-    document.querySelector(".add-task-button").style.display = "block"; 
-    document.querySelector(".title-element").style.display = "block"; 
+    document.querySelector(".add-task-button").style.display = "block";  
     
-     // ✅ Re-enable clicks on projects and tasks
+     // Re-enable clicks on projects and tasks
      document.querySelector(".project-list").classList.remove("disabled");
      document.getElementById("task-display").classList.remove("disabled");
 });
@@ -92,4 +97,4 @@ taskCancelButton.addEventListener("click", () => {
 
 
 
-export { addNewTask, showTaskForm };
+export { addNewTask, showTaskForm, createTask };

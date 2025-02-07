@@ -78,6 +78,13 @@ button {
     opacity: 0.8; /* Optional: make it visually clear that it's disabled */
 }
 
+.completed {
+    text-decoration: line-through;
+    color: rgb(65, 64, 64);
+    opacity: 0.7;
+}
+
+
 
 #project-form { 
     display: flex;
