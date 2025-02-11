@@ -20,8 +20,7 @@ projectForm.classList.add("hidden");
 // Open the project form
 addProjectButton.addEventListener("click", () => {
     projectForm.classList.toggle("hidden");
-    addProjectButton.style.display = "none";   // Hide the button when form is open
-    
+    addProjectButton.style.display = "none";   // Hide the button when form is open 
 });
 
 // ADD NEW PROJECT
@@ -34,9 +33,7 @@ function addNewProject(e, projectList, toDoList) {
 
     const newProject = { title };
     projectList.push(newProject);
-    
-    console.log("New project added:", newProject);
-    console.log("Updated project list:", projectList);
+
     displayProjects(projectList, toDoList);  // Update the project display
 
 

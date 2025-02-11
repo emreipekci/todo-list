@@ -1,5 +1,4 @@
-import { displayTasks, filterTasks } from "./dom.js";
-
+import { displayTasks } from "./dom.js";
 
 //TASKS 
 //✅Task factory function
@@ -15,9 +14,7 @@ function createTask(title, details, date, priority, project, checked=false) {
 }
 
 const taskForm = document.getElementById("task-form");
-
-taskForm.classList.add('hidden')
-
+taskForm.classList.add('hidden');
 
 //✅ ADD NEW TASK
 function addNewTask(e, toDoList) {
@@ -38,22 +35,18 @@ function addNewTask(e, toDoList) {
     //Create a new task
     const newTask = { title, details, date, priority, project, checked: false };
 
+
     // Add the task to the toDoList array
     toDoList.push(newTask);
-
-    console.log("New Task Added:", newTask);
-    console.log("Updated To-Do List:", toDoList);  // 🔍 Check if the task is added
+    taskForm.reset();
 
     displayTasks(toDoList.filter(task => task.project === project));
 }
 
-    document.addEventListener("click", (e) => {
-        if (e.target.classList.contains("add-task-button")) {
-            console.log("Add Task Button Clicked!");
-            taskForm.classList.remove("hidden");
-
-            document.querySelector(".add-task-button").style.display = "none";
-            
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-task-button")) {
+        taskForm.classList.remove("hidden");
+        document.querySelector(".add-task-button").style.display = "none";    
         }
     }); 
 
@@ -76,9 +69,6 @@ function showTaskForm(projectName) {
     // Disable clicks on projects and tasks
     document.querySelector(".project-list").classList.add("disabled");
     document.getElementById("task-display").classList.add("disabled");
-     
-
-    console.log("Task form shown for project:", projectName);
 }
 
 // Cancel button hides the task form and brings back "Add Task" button
@@ -88,13 +78,9 @@ taskCancelButton.addEventListener("click", () => {
     taskForm.classList.add("hidden"); 
     document.querySelector(".add-task-button").style.display = "block";  
     
-     // Re-enable clicks on projects and tasks
-     document.querySelector(".project-list").classList.remove("disabled");
-     document.getElementById("task-display").classList.remove("disabled");
+    // Re-enable clicks on projects and tasks
+    document.querySelector(".project-list").classList.remove("disabled");
+    document.getElementById("task-display").classList.remove("disabled");
 });
-
-
-
-
 
 export { addNewTask, showTaskForm, createTask };

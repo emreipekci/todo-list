@@ -1,7 +1,7 @@
 import "./styles.css";
 import { addNewTask } from "./task.js";
 import { addNewProject } from "./project.js";
-import { displayTasks, displayProjects, filterTasks } from "./dom.js";
+import { displayProjects } from "./dom.js";
 
 const toDoList = [];
 const projectList = [];
@@ -16,9 +16,7 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
 });
 
 document.getElementById("project-form").addEventListener("submit", (e) => {
-    addNewProject(e, projectList, toDoList);
-    
+    addNewProject(e, projectList, toDoList);   
 });
-
     
 export { toDoList, projectList }; 
