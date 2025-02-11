@@ -1,4 +1,5 @@
 import { displayProjects } from "./dom.js";
+import { saveToLocalStorage } from "./storage.js";
 
 //PROJECTS
 //Project factory function
@@ -34,8 +35,9 @@ function addNewProject(e, projectList, toDoList) {
     const newProject = { title };
     projectList.push(newProject);
 
-    displayProjects(projectList, toDoList);  // Update the project display
+    saveToLocalStorage(toDoList, projectList);  // Save updated list
 
+    displayProjects(projectList, toDoList);  // Update the project display
 
     projectForm.reset();
     projectForm.classList.add("hidden"); // Hide form after adding project

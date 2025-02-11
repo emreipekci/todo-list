@@ -1,4 +1,5 @@
 import { displayTasks } from "./dom.js";
+import { saveToLocalStorage } from "./storage.js";
 
 //TASKS 
 //✅Task factory function
@@ -17,7 +18,7 @@ const taskForm = document.getElementById("task-form");
 taskForm.classList.add('hidden');
 
 //✅ ADD NEW TASK
-function addNewTask(e, toDoList) {
+function addNewTask(e, toDoList, projectList) {
     
     e.preventDefault(); // stop page from refreshing after each submit
 
@@ -35,9 +36,10 @@ function addNewTask(e, toDoList) {
     //Create a new task
     const newTask = { title, details, date, priority, project, checked: false };
 
-
     // Add the task to the toDoList array
     toDoList.push(newTask);
+    saveToLocalStorage(toDoList, projectList);  // Save updated list
+    
     taskForm.reset();
 
     displayTasks(toDoList.filter(task => task.project === project));

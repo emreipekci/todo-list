@@ -1,5 +1,6 @@
 import { showTaskForm } from "./task.js";
-import { toDoList } from "./index.js";
+import { projectList, toDoList } from "./index.js";
+import { saveToLocalStorage } from "./storage.js";
 
 
 //✅ DISPLAY TASKS
@@ -17,14 +18,15 @@ function displayTasks(toDoList) {
         taskElement.innerHTML = `<h3>${task.title}</h3>
                                 <p>${task.details}</p>
                                 <p>Due: ${task.date} | Priority: ${task.priority}</p>
-                                <p>Project: ${task.project}</p>
+                                <p>${task.project}</p>
                                 <input type="checkbox" ${task.checked ? "checked" : ""}>`;
         
         // Add event listener to update the task status when checkbox is clicked
         const checkbox = taskElement.querySelector("input[type='checkbox']");
         checkbox.addEventListener("change", () => {
             task.checked = checkbox.checked; // Update `toDoList` directly
-            displayTasks(toDoList); // Re-render the task list
+            saveToLocalStorage(toDoList, projectList); // Save updated state
+            displayTasks(toDoList, projectList); // Re-render the task list
         });
         
         taskDisplay.appendChild(taskElement);  
@@ -90,7 +92,7 @@ function displayProjects(projectList, toDoList) {
 
         // Click event to show details
         projectElement.addEventListener("click", () => {
-            showProjectPreview(project, index, projectList, toDoList);
+            showProjectPreview(project, toDoList);
         });
         
         projectDisplay.appendChild(projectElement);
@@ -98,7 +100,7 @@ function displayProjects(projectList, toDoList) {
 }
 
 //✅ SHOW PROJECT PREVIEW
-function showProjectPreview(project, index, projectList, toDoList) {  
+function showProjectPreview(project, toDoList) {  
     const previewContainer = document.getElementById("content-preview");
     const taskDisplay = document.getElementById("task-display");
 
