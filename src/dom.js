@@ -2,6 +2,9 @@ import { showTaskForm } from "./task.js";
 import { projectList, toDoList } from "./index.js";
 import { saveToLocalStorage } from "./storage.js";
 
+const previewContainer = document.getElementById("content-preview");
+const taskDisplay = document.getElementById("task-display");
+const addTaskButton = document.querySelector(".add-task-button");
 
 //✅ DISPLAY TASKS
 function displayTasks(toDoList) {
@@ -19,7 +22,8 @@ function displayTasks(toDoList) {
                                 <p>${task.details}</p>
                                 <p>Due: ${task.date} | Priority: ${task.priority}</p>
                                 <p>${task.project}</p>
-                                <input type="checkbox" ${task.checked ? "checked" : ""}>`;
+                                <label>Completed: <input type="checkbox" ${task.checked ? "checked" : ""}></label>
+                                <i class="fa fa-trash delete-task" title="Delete"></i>`;
         
         // Add event listener to update the task status when checkbox is clicked
         const checkbox = taskElement.querySelector("input[type='checkbox']");
@@ -28,7 +32,15 @@ function displayTasks(toDoList) {
             saveToLocalStorage(toDoList, projectList); // Save updated state
             displayTasks(toDoList, projectList); // Re-render the task list
         });
-        
+
+        // DELETE BUTTON
+        const deleteButton = taskElement.querySelector(".delete-task");
+        deleteButton.addEventListener("click", () => {
+        toDoList.splice(index, 1);  // Remove task from array
+        saveToLocalStorage(toDoList, projectList); // Save new list
+        displayTasks(toDoList);  // Refresh tasks
+        });
+ 
         taskDisplay.appendChild(taskElement);  
     });
 }
@@ -57,8 +69,14 @@ function filterTasks(toDoList, filterType) {
     }
 
     displayTasks(filteredTasks);
+
     document.getElementById("task-form").classList.add('hidden');
-    document.querySelector(".add-task-button").style.display = "none";
+
+     // ✅ Only hide the add-task-button if it exists
+    addTaskButton.style.display = "none";
+    if (addTaskButton) {
+        addTaskButton.style.display = "none";
+    }
     // Re-enable clicks on projects and tasks
     document.querySelector(".project-list").classList.remove("disabled");
     document.getElementById("task-display").classList.remove("disabled");
@@ -76,6 +94,7 @@ document.getElementById("today-tasks-btn").addEventListener("click", () => {
     
 document.getElementById("week-tasks-btn").addEventListener("click", () => {
     console.log("Week tasks button clicked");
+    console.log("toDoList:", toDoList);
     filterTasks(toDoList, "week"); 
 });
     
@@ -87,22 +106,60 @@ function displayProjects(projectList, toDoList) {
 
     projectList.forEach((project, index) => {
         const projectElement = document.createElement("div");
-        projectElement.textContent = project.title; //Show only title
-        projectElement.classList.add("project-title");
+        projectElement.classList.add("project-container");
 
-        // Click event to show details
-        projectElement.addEventListener("click", () => {
+        const projectTitle = document.createElement("span");
+        projectTitle.textContent = project.title;
+        projectTitle.classList.add("project-title");
+
+        // ✅ Create delete button with trash bin icon
+        const deleteButton = document.createElement("i");
+        deleteButton.classList.add("fa", "fa-trash", "delete-project");
+        deleteButton.setAttribute("title", "Delete Project"); // Tooltip on hover
+
+         // Click event to show project details
+        projectTitle.addEventListener("click", () => {
             showProjectPreview(project, toDoList);
         });
-        
+
+        // Click event to delete project
+        deleteButton.addEventListener("click", () => {
+            deleteProject(project.title);
+        });
+
+        // Append elements
+        projectElement.appendChild(projectTitle);
+        projectElement.appendChild(deleteButton);
         projectDisplay.appendChild(projectElement);
+        
     });
+}
+
+//✅ DELETE PROJECT FUNCTION
+function deleteProject(projectTitle) {
+    // Remove from project list
+    const updatedProjects = projectList.filter(project => project.title !== projectTitle);
+    projectList.length = 0; // Clear original array
+    projectList.push(...updatedProjects); // Update with new data
+
+    // Remove associated tasks
+    const updatedTasks = toDoList.filter(task => task.project !== projectTitle);
+    toDoList.length = 0; 
+    toDoList.push(...updatedTasks);
+
+    // Save updated lists to local storage
+    saveToLocalStorage(toDoList, projectList);
+
+    // Re-render the UI
+    displayProjects(projectList, toDoList);
+    displayTasks(toDoList);
+    previewContainer.querySelector(".title-element").style.display = "none";
+    addTaskButton.style.display = "none";
 }
 
 //✅ SHOW PROJECT PREVIEW
 function showProjectPreview(project, toDoList) {  
-    const previewContainer = document.getElementById("content-preview");
-    const taskDisplay = document.getElementById("task-display");
+    if (!toDoList) toDoList = []; // Ensure it's an array
 
     // Check if titleElement already exists
     let titleElement = previewContainer.querySelector(".title-element");
@@ -113,7 +170,9 @@ function showProjectPreview(project, toDoList) {
     }
     titleElement.textContent = project.title; // Update title
     
-    // Remove only the add-task-button
+    addTaskButton.style.display = "block";
+    
+    /* Remove only the add-task-button
     const oldButton = previewContainer.querySelector(".add-task-button");
     if (oldButton) oldButton.remove();
 
@@ -121,7 +180,7 @@ function showProjectPreview(project, toDoList) {
 
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = "Add Task";
-    addTaskButton.classList.add("add-task-button");
+    addTaskButton.classList.add("add-task-button"); */
 
     // Filter tasks by selected project
     const filteredTasks = toDoList.filter(task => task.project === project.title);

@@ -1,7 +1,7 @@
 :root {
     --background-color: rgb(241, 242, 253);
     --font-size: 14px;
-    --main-color: rgb(143, 131, 137);
+    --main-color: rgb(211, 202, 207);
 }
 
 * {
@@ -18,14 +18,16 @@ body {
 
 header {
     grid-row: 1;
-
+    min-height: 30px;
+    background-color: var(--main-color);
+    padding: 2em;
 }
 
 main {
     grid-row: 2;
     font-family: "Montserrat", sans-serif;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
 
 }
@@ -33,13 +35,14 @@ main {
 .sidebar {
     grid-column: 1;
     background-color: var(--background-color);
-    padding: 3em;
+    padding: 1em 2em;
 }
 
 footer {
     padding: 10px;
     text-align: center;
     font-size: 0.9rem;
+    background-color: var(--main-color);
 }
 
 .task-list,
@@ -53,7 +56,7 @@ h2 {
 }
 
 button {
-    margin: 15px;
+    margin: 10px;
     background-color: var(--main-color);
     color: white;
     font-weight: 600;
@@ -84,6 +87,24 @@ button {
     opacity: 0.7;
 }
 
+.delete-task, .delete-project{
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: rgb(179, 174, 174);
+    opacity: 0.8;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.delete-task:hover, .delete-project:hover{
+    color: darkred;
+}
+
+
+.delete-task i {
+    pointer-events: none; /* Prevents issues with clicking the icon */
+}
 
 
 #project-form { 
@@ -103,29 +124,48 @@ button {
     gap: 0.5em; 
 }
 
-.project-title {
-    background-color: var(--main-color);
-    padding: 10px 20px;
-    margin: 15px;
-    color: white;
+.project-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+#project-display {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+
+.project-container:hover {
+    background-color: rgb(179, 174, 174);
+}
+
 
 /*Task form*/
 
 #content-preview {
-    padding: 3em;  
+    padding: 3em;
+      
 }
 
 #task-form {
     display: flex;
     flex-direction: column;
+    padding: 2em;
     max-width: 300px;
     gap: 1em;
 }
 
 .task-form-inputs {
-    padding: 1em 0.5em 1em 0.5em;
+    padding: 1em 0.5em;
 }
 .task-form-other-inputs {
     padding: 0.5em ;
 }
+
+.btn {
+    margin: 0;
+    max-width: 120px;   
+}
+

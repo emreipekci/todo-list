@@ -9,6 +9,9 @@ const projectList = [];
 
 //Event listeners for adding tasks and projects
 document.addEventListener("DOMContentLoaded", () => {
+    const addTaskButton = document.querySelector(".add-task-button");
+    addTaskButton.style.display = "none"; // Hide the button on initial load
+
     loadFromLocalStorage(toDoList, projectList);
     displayProjects(projectList, toDoList);
     displayTasks(toDoList);

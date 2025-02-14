@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
     <header class="header">
@@ -45,11 +47,13 @@
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
-                         
-                <button type="submit">Add</button>
-                <button id="task-cancel-button">Cancel</button>
+                <div class="task-btn">        
+                    <button class="btn" type="submit">Add</button>
+                    <button class="btn" id="task-cancel-button">Cancel</button>
+                </div> 
             </form>
             <div id="task-display"></div> <!-- Container for tasks -->
+            <button class="add-task-button" type="submit">Add Task</button>
         </div>
         
     </main>
