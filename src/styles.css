@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap');
+
 :root {
     --background-color: rgb(241, 242, 253);
     --font-size: 14px;
-    --main-color: rgb(211, 202, 207);
+    --grey-color: rgb(211, 202, 207);
 }
 
 * {
@@ -13,23 +15,24 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: 1fr 8fr min-content;
-
 }
 
 header {
     grid-row: 1;
     min-height: 30px;
-    background-color: var(--main-color);
+    background-color: var(--grey-color);
     padding: 2em;
+    font-family: 'Merriweather', serif;
+    letter-spacing: 0.5rem;
+    color: rgb(186, 52, 52);
 }
 
 main {
     grid-row: 2;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
-
 }
 
 .sidebar {
@@ -42,7 +45,7 @@ footer {
     padding: 10px;
     text-align: center;
     font-size: 0.9rem;
-    background-color: var(--main-color);
+    background-color: var(--grey-color);
 }
 
 .task-list,
@@ -52,12 +55,12 @@ footer {
 }
 
 h2 {
-    margin: 15px;
+    margin: 10px 15px;
 }
 
 button {
     margin: 10px;
-    background-color: var(--main-color);
+    background-color: var(--grey-color);
     color: white;
     font-weight: 600;
     border: none;
@@ -101,11 +104,9 @@ button {
     color: darkred;
 }
 
-
 .delete-task i {
     pointer-events: none; /* Prevents issues with clicking the icon */
 }
-
 
 #project-form { 
     display: flex;
@@ -128,25 +129,25 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1em;
+    border-radius: 4px;  
 }
 
 #project-display {
     display: flex;
     flex-direction: column;
-    gap: 1em;
     padding: 1em;
 }
 
 .project-container:hover {
-    background-color: rgb(179, 174, 174);
+    background-color: var(--grey-color);
 }
 
 
 /*Task form*/
 
 #content-preview {
-    padding: 3em;
-      
+    padding: 3em 3em 1em 3em;
 }
 
 #task-form {
@@ -168,4 +169,15 @@ button {
     margin: 0;
     max-width: 120px;   
 }
+
+#task-display {
+    display: grid;
+    grid-auto-flow: column; /* Fill vertically first */
+    grid-template-rows: repeat(auto-fill, 150px); /* Fixed height for better control */
+    gap: 10px; /* Adjust spacing */
+    height: 500px; /* Max height before wrapping */
+    min-width: 300px; /* Ensure enough space for new columns */
+    overflow-y: auto; /* Optional scrolling */
+}
+
 
