@@ -77,9 +77,6 @@ function filterTasks(toDoList, filterType) {
     if (addTaskButton) {
         addTaskButton.style.display = "none";
     }
-    // Re-enable clicks on projects and tasks
-    document.querySelector(".project-list").classList.remove("disabled");
-    document.getElementById("task-display").classList.remove("disabled");
 }
 
 // ✅ Event listeners for sidebar buttons
@@ -119,6 +116,10 @@ function displayProjects(projectList, toDoList) {
 
          // Click event to show project details
         projectTitle.addEventListener("click", () => {
+            const taskForm = document.getElementById("task-form");
+            if (taskForm && previewContainer.contains(taskForm)) {
+                taskForm.classList.add("hidden");
+            }
             showProjectPreview(project, toDoList);
         });
 
@@ -171,16 +172,6 @@ function showProjectPreview(project, toDoList) {
     titleElement.textContent = project.title; // Update title
     
     addTaskButton.style.display = "block";
-    
-    /* Remove only the add-task-button
-    const oldButton = previewContainer.querySelector(".add-task-button");
-    if (oldButton) oldButton.remove();
-
-    taskDisplay.innerHTML = "";
-
-    const addTaskButton = document.createElement("button");
-    addTaskButton.textContent = "Add Task";
-    addTaskButton.classList.add("add-task-button"); */
 
     // Filter tasks by selected project
     const filteredTasks = toDoList.filter(task => task.project === project.title);

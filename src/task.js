@@ -67,10 +67,6 @@ function showTaskForm(projectName) {
     } else {
         previewContainer.prepend(taskForm); // If no title (unlikely), just add the form at the top
     }
-
-    // Disable clicks on projects and tasks
-    document.querySelector(".project-list").classList.add("disabled");
-    document.getElementById("task-display").classList.add("disabled");
 }
 
 // Cancel button hides the task form and brings back "Add Task" button
@@ -79,10 +75,6 @@ taskCancelButton.addEventListener("click", () => {
     taskForm.reset();
     taskForm.classList.add("hidden"); 
     document.querySelector(".add-task-button").style.display = "block";  
-    
-    // Re-enable clicks on projects and tasks
-    document.querySelector(".project-list").classList.remove("disabled");
-    document.getElementById("task-display").classList.remove("disabled");
 });
 
 export { addNewTask, showTaskForm, createTask };

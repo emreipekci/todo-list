@@ -81,7 +81,7 @@ button {
 
 .disabled {
     pointer-events: none; /* Prevents clicks */
-    opacity: 0.8; /* Optional: make it visually clear that it's disabled */
+    opacity: 0.1; /* Optional: make it visually clear that it's disabled */
 }
 
 .completed {
@@ -172,12 +172,15 @@ button {
 
 #task-display {
     display: grid;
-    grid-auto-flow: column; /* Fill vertically first */
-    grid-template-rows: repeat(auto-fill, 150px); /* Fixed height for better control */
-    gap: 10px; /* Adjust spacing */
-    height: 500px; /* Max height before wrapping */
-    min-width: 300px; /* Ensure enough space for new columns */
-    overflow-y: auto; /* Optional scrolling */
+    grid-auto-flow: column; /* Fills vertically first */
+    grid-template-rows: repeat(auto-fill, 160px); /* Fixed row height */
+    grid-auto-columns: minmax(280px, 1fr); /* Flexible column width */
+    gap: 10px;
+    max-height: 600px; /* Limit height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    align-items: start; /* Ensures items align properly */
 }
+
+
 
 
