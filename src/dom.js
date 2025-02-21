@@ -68,7 +68,23 @@ function filterTasks(toDoList, filterType) {
         titleElement.textContent = ""; // Clear the project title
     }
 
-    displayTasks(filteredTasks);
+    // ✅ Select task display container and clear previous content
+    const taskDisplay = document.getElementById("task-display");
+    taskDisplay.innerHTML = ""; 
+
+    // ✅ Remove existing "no tasks" message before adding a new one
+    const existingMessage = document.querySelector(".no-tasks-message");
+    if (existingMessage) existingMessage.remove();
+
+    if (filteredTasks.length === 0) {
+        // ✅ Show message when no tasks match the filter
+        const noTasksMessage = document.createElement("p");
+        noTasksMessage.textContent = "Yay! There are no tasks!";
+        noTasksMessage.classList.add("no-tasks-message"); // Optional: Add a class for styling
+        taskDisplay.appendChild(noTasksMessage);
+    } else {
+        displayTasks(filteredTasks);
+    }
 
     document.getElementById("task-form").classList.add('hidden');
 
@@ -172,6 +188,10 @@ function showProjectPreview(project, toDoList) {
     titleElement.textContent = project.title; // Update title
     
     addTaskButton.style.display = "block";
+
+    // Remove "No tasks" message if it exists
+    const existingMessage = document.querySelector(".no-tasks-message");
+    if (existingMessage) existingMessage.remove();
 
     // Filter tasks by selected project
     const filteredTasks = toDoList.filter(task => task.project === project.title);
