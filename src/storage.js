@@ -1,9 +1,12 @@
-function saveToLocalStorage(toDoList, projectList) {
+let toDoList = [];
+let projectList = [];
+
+function saveToLocalStorage() {
     localStorage.setItem("toDoList", JSON.stringify(toDoList));
     localStorage.setItem("projectList", JSON.stringify(projectList));
 }
 
-function loadFromLocalStorage(toDoList, projectList) {
+function loadFromLocalStorage() {
     const storedTasks = JSON.parse(localStorage.getItem("toDoList")) || [];
     const storedProjects = JSON.parse(localStorage.getItem("projectList")) || [];
 
@@ -14,6 +17,6 @@ function loadFromLocalStorage(toDoList, projectList) {
     projectList.push(...storedProjects);
 }
 
-export { saveToLocalStorage, loadFromLocalStorage };
+export { saveToLocalStorage, loadFromLocalStorage, toDoList, projectList };
 
 

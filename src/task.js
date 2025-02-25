@@ -1,5 +1,5 @@
 import { displayTasks } from "./dom.js";
-import { saveToLocalStorage } from "./storage.js";
+import { saveToLocalStorage, toDoList, projectList } from "./storage.js";
 
 //TASKS 
 //✅Task factory function
@@ -18,7 +18,7 @@ const taskForm = document.getElementById("task-form");
 taskForm.classList.add('hidden');
 
 //✅ ADD NEW TASK
-function addNewTask(e, toDoList, projectList) {
+function addNewTask(e) {
     
     e.preventDefault(); // stop page from refreshing after each submit
 
@@ -68,6 +68,8 @@ function showTaskForm(projectName) {
         previewContainer.prepend(taskForm); // If no title (unlikely), just add the form at the top
     }
 }
+const taskSubmitButton = document.getElementById("task-submit-button");
+taskSubmitButton.addEventListener("click", addNewTask);
 
 // Cancel button hides the task form and brings back "Add Task" button
 const taskCancelButton = document.getElementById("task-cancel-button");

@@ -2,23 +2,21 @@ import "./styles.css";
 import { addNewTask } from "./task.js";
 import { addNewProject } from "./project.js";
 import { displayProjects, displayTasks } from "./dom.js";
-import { loadFromLocalStorage } from "./storage.js";
+import { loadFromLocalStorage, toDoList, projectList } from "./storage.js";
 
-const toDoList = [];
-const projectList = [];
 
-//Event listeners for adding tasks and projects
+// Load tasks & projects when the app starts
 document.addEventListener("DOMContentLoaded", () => {
     const addTaskButton = document.querySelector(".add-task-button");
     addTaskButton.style.display = "none"; // Hide the button on initial load
 
-    loadFromLocalStorage(toDoList, projectList);
+    loadFromLocalStorage();
     displayProjects(projectList, toDoList);
     displayTasks(toDoList);
 });
 
 document.getElementById("task-form").addEventListener("submit", (e) => {
-    addNewTask(e, toDoList, projectList);
+    addNewTask(e);
     displayTasks(toDoList);
 });
 
