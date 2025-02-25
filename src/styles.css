@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Inter:wght@300;400;600&display=swap');
 
 :root {
-    --background-color: rgb(241, 242, 253);
+    --hover-color: rgb(241, 242, 253);
     --font-size: 14px;
-    --grey-color: rgb(211, 202, 207);
+    --grey-color: #4a4a4a;
+    --lightgrey-color: #a5a4a2;
+     
 }
 
 * {
@@ -21,10 +23,10 @@ header {
     grid-row: 1;
     min-height: 30px;
     background-color: var(--grey-color);
-    padding: 2em;
+    padding: 2em 2em 2em 2.5em;
     font-family: 'Merriweather', serif;
     letter-spacing: 0.5rem;
-    color: rgb(186, 52, 52);
+    color: #ff7e5f;
 }
 
 main {
@@ -37,8 +39,9 @@ main {
 
 .sidebar {
     grid-column: 1;
-    background-color: var(--background-color);
     padding: 1em 2em;
+    background: linear-gradient(to left, #ff7e5f, #feb47b);
+    
 }
 
 footer {
@@ -60,7 +63,7 @@ h2 {
 
 button {
     margin: 10px;
-    background-color: var(--grey-color);
+    background-color: var(--lightgrey-color);
     color: white;
     font-weight: 600;
     border: none;
@@ -73,6 +76,7 @@ button {
 .content-preview {
     grid-column: 2;
     background-color: rgb(163, 135, 189);
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
 }
 
 .hidden {
@@ -94,7 +98,7 @@ button {
     cursor: pointer;
     background: none;
     border: none;
-    color: rgb(179, 174, 174);
+    color: var(--grey-color);
     opacity: 0.8;
     font-size: 15px;
     margin-left: 10px;
@@ -140,7 +144,7 @@ button {
 }
 
 .project-container:hover {
-    background-color: var(--grey-color);
+    background-color: var(--hover-color);
 }
 
 
@@ -148,6 +152,10 @@ button {
 
 #content-preview {
     padding: 3em 3em 1em 3em;
+}
+
+#content-preview .title-element {
+    padding-bottom: 1em;
 }
 
 #task-form {
