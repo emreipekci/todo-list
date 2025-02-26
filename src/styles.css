@@ -40,8 +40,7 @@ main {
 .sidebar {
     grid-column: 1;
     padding: 1em 2em;
-    background: linear-gradient(to left, #ff7e5f, #feb47b);
-    
+    background: linear-gradient(to left, #ff7e5f, #feb47b);  
 }
 
 footer {
@@ -71,6 +70,10 @@ button {
     padding: 10px 20px;
     border-radius: 4px;  
     font-size: var(--font-size);
+}
+
+.home-buttons:active {
+    color: black;
 }
 
 .content-preview {
@@ -151,7 +154,8 @@ button {
 /*Task form*/
 
 #content-preview {
-    padding: 3em 3em 1em 3em;
+    padding: 2em 3em 1em 3em;
+    border-left: 1px solid;
 }
 
 #content-preview .title-element {
