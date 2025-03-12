@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<script defer src="main.js"></script></head>
+<body>
+    <header class="header">
+        <h1>What-To-Do</h1>
+    </header>
+    <main class="main">
+        <div class="sidebar">
+            <div class="task-list">
+                <h2 class="home-title">Home</h2>
+                <button class="home-buttons" id="all-tasks-btn">All Tasks</button>
+                <button class="home-buttons" id="today-tasks-btn">Today</button>
+                <button class="home-buttons" id="week-tasks-btn">This Week</button>
+            </div>
+            <div class="project-list">
+                <h2>Projects</h2>
+                <form id="project-form">
+                    <div class="project-form-input">
+                        <input type="text" id="project-title" placeholder="Project Title" required>
+                    </div>
+                    <div class="project-form-buttons">                    
+                        <button id="add-button" type="submit">Add</button>
+                        <button id="cancel-button">Cancel</button>
+                    </div>
+                </form>
+                <div id="project-display">
+                    <div id="project-preview"></div>
+                </div>  <!-- Container for projects --> 
+                <button class="add-project-button" type="submit">Add Project</button>
+            </div>
+        </div>
+        
+        <div id="content-preview" class="content-preview"> 
+            <form id="task-form">
+                <input type="text" class="task-form-inputs" id="task-title" placeholder="Task Title" required>
+                <input type="text" class="task-form-inputs" id="task-details" placeholder="Details">
+                <input type="date" class="task-form-other-inputs" id="task-date">
+                <select class="task-form-other-inputs" id="task-priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <div class="task-btn">        
+                    <button class="btn" id="task-submit-button" type="submit">Add</button>
+                    <button class="btn" id="task-cancel-button">Cancel</button>
+                </div> 
+            </form>
+            <div id="task-display"></div> <!-- Container for tasks -->
+            <button class="add-task-button" type="submit">Add Task</button>
+        </div>
+        
+    </main>
+    <footer class="footer">
+        Built by
+        <a class="footer-link" href="https://github.com/emreipekci"target="_blank">emreipekci</a> |
+        <a class="footer-link" href="https://github.com/emreipekci/todo-list"target="_blank">source</a>
+    </footer>
+</body>
+</html>
